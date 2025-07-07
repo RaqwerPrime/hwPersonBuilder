@@ -1,6 +1,7 @@
 package ruslan.araslanov;
 
 import java.util.Objects;
+import java.util.OptionalInt;
 
 public class Person {
     protected final String name;
@@ -35,26 +36,23 @@ public class Person {
         this.address = address;
     }
 
-    public Integer getAge() {
-        return age;
+    public OptionalInt getAge() {
+        return age == null ? OptionalInt.empty() : OptionalInt.of(age);
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 
     public void happyBirthday() {
-        if (getAge() != null) {
+        if (hasAge()) {
             age++;
         }
     }
 
     public boolean hasAge() {
-        return getAge() != null;
+        return age != null;
     }
 
     public boolean hasAddress() {
-        return getAddress() != null;
+        return address != null;
     }
 
     public PersonBuilder newChildBuilder() {
